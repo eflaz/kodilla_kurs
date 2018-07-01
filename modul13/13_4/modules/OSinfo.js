@@ -1,5 +1,5 @@
 var os = require('os');
-var uptimeModule = require('./uptime');
+var printFormattedTime = require('./printFormattedTime');
 
 function getOSinfo() {
 	var type = os.type();
@@ -18,6 +18,6 @@ function getOSinfo() {
 	console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');
 	console.log('User name:', userInfo.username);
 	console.log('Home dir:', userInfo.homedir);
-	uptimeModule.print();
+	printFormattedTime.print(uptime);
 }
 exports.print = getOSinfo;
