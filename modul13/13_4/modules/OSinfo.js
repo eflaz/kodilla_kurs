@@ -1,5 +1,5 @@
 var os = require('os');
-var printFormattedTime = require('./printFormattedTime');
+var formatTime = require('./formatTime');
 
 function getOSinfo() {
 	var type = os.type();
@@ -18,6 +18,7 @@ function getOSinfo() {
 	console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');
 	console.log('User name:', userInfo.username);
 	console.log('Home dir:', userInfo.homedir);
-	printFormattedTime.print(uptime);
+	console.log('Uptime - minutes: ', formatTime.getMinutes(uptime));
+	console.log('Uptime - hours: ', formatTime.getHours(uptime));
 }
 exports.print = getOSinfo;
