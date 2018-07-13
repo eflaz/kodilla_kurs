@@ -16,7 +16,6 @@ var Counter = React.createClass({
 
 	componentWillMount: function() {
 		console.log("componentWillMount called");
-		return;
 	},
 
 	increment: function() {
@@ -48,13 +47,10 @@ var Counter = React.createClass({
 		this.setState({
 			counter: value
 		});
-		return;
 	},
 
 	componentWillReceiveProps: function(nextProps) {
 		console.log('componentWillReceiveProps called with parameter:' + nextProps);
-		return;
-		
 	},
 
 	shouldComponentUpdate: function(nextProps, nextState) {
@@ -74,8 +70,6 @@ var Counter = React.createClass({
 
 	componentWillUpdate: function(nextProps, nextState) {
 		console.log('componentWillUpdate called');
-		return;
-		
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
