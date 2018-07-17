@@ -1,0 +1,22 @@
+body {
+	background-color: #535c68;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+}
+a {
+	color: white;
+	font-family: Arial;
+	text-decoration: none;
+	padding: 25px;
+}
+
+.stopwatch {
+	padding: 20px;
+	font-size: 50px;
+}
+
+.results {
+	list-style: none;
+	padding: 10px;
+}
