@@ -109,36 +109,37 @@ var ResultsList = function () {
 function pad0(value) {
 	var result = value.toString();
 	if (result.length < 2) {
-		result = '0' + result;
+		result = "0" + result;
 	}
 	return result;
 }
 
-var stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
+var stopwatch = new Stopwatch(document.querySelector(".stopwatch"));
 
-var resultsList = new ResultsList(document.querySelector('.results'));
+var resultsList = new ResultsList(document.querySelector(".results"));
 
-var startButton = document.getElementById('start');
-startButton.addEventListener('click', function () {
+var startButton = document.getElementById("start");
+startButton.addEventListener("click", function () {
 	return stopwatch.start();
 });
 
-var stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', function () {
+var stopButton = document.getElementById("stop");
+stopButton.addEventListener("click", function () {
 	return stopwatch.stop();
 });
 
-var resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', function () {
-	stopwatch.reset();stopwatch.print();
+var resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", function () {
+	stopwatch.reset();
+	stopwatch.print();
 });
 
-var saveResultButton = document.getElementById('saveResult');
-saveResultButton.addEventListener('click', function () {
+var saveResultButton = document.getElementById("saveResult");
+saveResultButton.addEventListener("click", function () {
 	return stopwatch.saveResult();
 });
 
-var resetResultsListButton = document.getElementById('resetResultsList');
-resetResultsListButton.addEventListener('click', function () {
+var resetResultsListButton = document.getElementById("resetResultsList");
+resetResultsListButton.addEventListener("click", function () {
 	return resultsList.reset();
 });

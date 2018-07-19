@@ -18,9 +18,10 @@ class Stopwatch {
 	}
 
 	format(times) {
-		return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
+		return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(
+			Math.floor(times.miliseconds)
+		)}`;
 	}
-
 
 	start() {
 		if (!this.running) {
@@ -30,19 +31,19 @@ class Stopwatch {
 	}
 
 	step() {
-		if(!this.running) return;
+		if (!this.running) return;
 		this.calculate();
 		this.print();
 	}
 
 	calculate() {
-		this.times.miliseconds +=1;
+		this.times.miliseconds += 1;
 		if (this.times.miliseconds >= 100) {
 			this.times.seconds += 1;
 			this.times.miliseconds = 0;
 		}
 		if (this.times.seconds >= 60) {
-			this.times.minutes +=1;
+			this.times.minutes += 1;
 			this.times.seconds = 0;
 		}
 	}
@@ -76,31 +77,29 @@ class ResultsList {
 function pad0(value) {
 	let result = value.toString();
 	if (result.length < 2) {
-		result = '0' + result;
+		result = "0" + result;
 	}
 	return result;
 }
 
-const stopwatch = new Stopwatch(
-	document.querySelector('.stopwatch'));
+const stopwatch = new Stopwatch(document.querySelector(".stopwatch"));
 
-const resultsList = new ResultsList(
-	document.querySelector('.results')
-	);
+const resultsList = new ResultsList(document.querySelector(".results"));
 
-	let startButton = document.getElementById('start');
-	startButton.addEventListener('click', () => stopwatch.start());
+let startButton = document.getElementById("start");
+startButton.addEventListener("click", () => stopwatch.start());
 
-	let stopButton = document.getElementById('stop');
-	stopButton.addEventListener('click', () => stopwatch.stop());
+let stopButton = document.getElementById("stop");
+stopButton.addEventListener("click", () => stopwatch.stop());
 
-	let resetButton = document.getElementById('reset');
-	resetButton.addEventListener('click', () => {stopwatch.reset(); stopwatch.print();});
+let resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", () => {
+	stopwatch.reset();
+	stopwatch.print();
+});
 
-	let saveResultButton = document.getElementById('saveResult');
-	saveResultButton.addEventListener('click', () => stopwatch.saveResult());
+let saveResultButton = document.getElementById("saveResult");
+saveResultButton.addEventListener("click", () => stopwatch.saveResult());
 
-	let resetResultsListButton = document.getElementById('resetResultsList');
-	resetResultsListButton.addEventListener('click', () => resultsList.reset());
-
-
+let resetResultsListButton = document.getElementById("resetResultsList");
+resetResultsListButton.addEventListener("click", () => resultsList.reset());
