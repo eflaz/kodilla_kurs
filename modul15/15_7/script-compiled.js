@@ -3,12 +3,13 @@ class Stopwatch extends React.Component {
 		super(props);
 
 		this.reset = () => {
-			this.state.times = {
-				minutes: 0,
-				seconds: 0,
-				miliseconds: 0
-			};
-			this.forceUpdate();
+			this.setState({
+				times: {
+					minutes: 0,
+					seconds: 0,
+					miliseconds: 0
+				}
+			});
 		};
 
 		this.start = () => {
@@ -51,8 +52,9 @@ class Stopwatch extends React.Component {
 		};
 
 		this.resetResultsList = () => {
-			this.state.resultsList = [];
-			this.forceUpdate();
+			this.setState({
+				resultsList: []
+			});
 		};
 
 		this.state = {
@@ -67,14 +69,18 @@ class Stopwatch extends React.Component {
 	}
 
 	render() {
-		let timesList = [];
-		for (let i = 0; i < this.state.resultsList.length; i++) {
-			timesList.push(React.createElement(
+		let timesList = this.state.resultsList.map(function (theResult) {
+			return React.createElement(
 				"li",
-				{ key: "time_" + i },
-				this.state.resultsList[i]
-			));
-		}
+				{ key: "time_" + Math.random() },
+				theResult
+			);
+		});
+		/*		for (let i = 0; i < this.state.resultsList.length; i++) {
+  	timesList.push(
+  		<li key={"time_" + i}>{this.state.resultsList[i]}</li>
+  	);
+  }*/
 		return React.createElement(
 			"div",
 			null,
@@ -83,42 +89,22 @@ class Stopwatch extends React.Component {
 				{ className: "controls" },
 				React.createElement(
 					"a",
-					{
-						href: "#",
-						className: "button",
-						id: "start",
-						onClick: this.start
-					},
+					{ href: "#", className: "button", onClick: this.start },
 					"Start"
 				),
 				React.createElement(
 					"a",
-					{
-						href: "#",
-						className: "button",
-						id: "stop",
-						onClick: this.stop
-					},
+					{ href: "#", className: "button", onClick: this.stop },
 					"Stop"
 				),
 				React.createElement(
 					"a",
-					{
-						href: "#",
-						className: "button",
-						id: "reset",
-						onClick: this.reset
-					},
+					{ href: "#", className: "button", onClick: this.reset },
 					"Reset"
 				),
 				React.createElement(
 					"a",
-					{
-						href: "#",
-						className: "button",
-						id: "saveResult",
-						onClick: this.saveResult
-					},
+					{ href: "#", className: "button", onClick: this.saveResult },
 					"Save results"
 				),
 				React.createElement(
@@ -126,7 +112,6 @@ class Stopwatch extends React.Component {
 					{
 						href: "#",
 						className: "button",
-						id: "resetResultsList",
 						onClick: this.resetResultsList
 					},
 					"Reset result list"

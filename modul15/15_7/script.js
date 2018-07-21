@@ -13,71 +13,53 @@ class Stopwatch extends React.Component {
 	}
 
 	reset = () => {
-		this.state.times = {
-			minutes: 0,
-			seconds: 0,
-			miliseconds: 0
-		};
-		this.forceUpdate();
+		this.setState({
+			times: {
+				minutes: 0,
+				seconds: 0,
+				miliseconds: 0
+			}
+		});
 	};
 
 	render() {
-		let timesList = [];
-		for (let i = 0; i < this.state.resultsList.length; i++) {
+		let timesList = this.state.resultsList.map(function(theResult) {
+			return <li key={"time_" + Math.random()}>{theResult}</li>;
+		});
+		/*		for (let i = 0; i < this.state.resultsList.length; i++) {
 			timesList.push(
 				<li key={"time_" + i}>{this.state.resultsList[i]}</li>
 			);
-		}
+		}*/
 		return (
 			<div>
-				<nav className={"controls"}>
-					<a
-						href={"#"}
-						className={"button"}
-						id={"start"}
-						onClick={this.start}
-					>
+				<nav className="controls">
+					<a href="#" className="button" onClick={this.start}>
 						Start
 					</a>
-					<a
-						href={"#"}
-						className={"button"}
-						id={"stop"}
-						onClick={this.stop}
-					>
+					<a href="#" className="button" onClick={this.stop}>
 						Stop
 					</a>
-					<a
-						href={"#"}
-						className={"button"}
-						id={"reset"}
-						onClick={this.reset}
-					>
+					<a href="#" className="button" onClick={this.reset}>
 						Reset
 					</a>
-					<a
-						href={"#"}
-						className={"button"}
-						id={"saveResult"}
-						onClick={this.saveResult}
-					>
+					<a href="#" className="button" onClick={this.saveResult}>
 						Save results
 					</a>
 					<a
-						href={"#"}
-						className={"button"}
-						id={"resetResultsList"}
+						href="#"
+						className="button"
 						onClick={this.resetResultsList}
 					>
 						Reset result list
 					</a>
 				</nav>
-				<div className={"stopwatch"}>
+				<div className="stopwatch">
 					<div>{this.format(this.state.times)}</div>
 				</div>
 				<div>
 					Results list:
-					<ul className={"results"}>{timesList}</ul>
+					<ul className="results">{timesList}</ul>
 				</div>
 			</div>
 		);
@@ -137,8 +119,9 @@ class Stopwatch extends React.Component {
 	}
 
 	resetResultsList = () => {
-		this.state.resultsList = [];
-		this.forceUpdate();
+		this.setState({
+			resultsList: []
+		});
 	};
 }
 
