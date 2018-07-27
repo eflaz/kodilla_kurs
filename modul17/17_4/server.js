@@ -12,7 +12,7 @@ app.get("/userform", function(req, res) {
 		first_name: req.query.first_name,
 		last_name: req.query.last_name
 	};
-	res.end(JSON.stringfy(response));
+	res.end(JSON.stringify(response));
 });
 
 var server = app.listen(3000, "localhost", function() {
