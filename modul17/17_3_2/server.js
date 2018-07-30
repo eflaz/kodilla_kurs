@@ -7,9 +7,11 @@ var stringifyFile;
 
 app.use(bodyParser.json());
 
+const fileName = './test.json';
+
 app.get("/getNote", function(req, res) {
-	console.log("GET request - printing file's content");
-	fs.readFile("./test.json", "utf-8", function(err, data) {
+	console.log("GET request - printing file\'s content");
+	fs.readFile(fileName, "utf-8", function(err, data) {
 		if (err) throw err;
 		stringifyFile = data;
 		res.send(data);
@@ -18,11 +20,15 @@ app.get("/getNote", function(req, res) {
 
 app.post("/updateNote/:note", function(req, res) {
 	console.log("POST request got, adding note to the file...");
-	stringifyFile += req.params.note;
-	fs.writeFile("./test.json", stringifyFile, function(err) {
+	fs.readFile(fileName, 'utf-8', function(err, data) {
 		if (err) throw err;
-		console.log("File updated");
-		res.send("file updated");
+		stringifyFile = data;
+		stringifyFile += req.params.note;
+		fs.writeFile(fileName, stringifyFile, function(err) {
+			if (err) throw err;
+			console.log("File updated");
+			res.send(stringifyFile);
+		});
 	});
 });
 
