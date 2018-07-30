@@ -102,9 +102,9 @@ eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-
   !*** ./node_modules/css-loader??ref--5-1!./src/containers/App.css ***!
   \********************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"._1yWMblMhcoxIcFRQVWQUoB {\\r\\n    background-color: #54a0ff;\\r\\n    color: #c8d6e5;\\r\\n    display: flex;\\r\\n    flex-direction: column;\\r\\n    flex-wrap: nowrap;\\r\\n    justify-content: center;\\r\\n    align-items: center;\\r\\n    align-content: center;\\r\\n    /*width: 100%;*/\\r\\n    height: 100%;\\r\\n    font-family: 'Merienda', cursive;\\r\\n}\", \"\"]);\n\n// exports\nexports.locals = {\n\t\"TodoApp\": \"_1yWMblMhcoxIcFRQVWQUoB\"\n};\n\n//# sourceURL=webpack:///./src/containers/App.css?./node_modules/css-loader??ref--5-1");
+eval("throw new Error(\"Module build failed (from ./node_modules/css-loader/index.js):\\nUnexpected } (4:1)\\n\\n  2 |     margin: 0 auto;\\n  3 | }\\n> 4 | }\\n    | ^\\n  5 | .TodoApp {\\n  6 |     background-color: #54a0ff;\\n  7 |     color: #c8d6e5;\\n\");\n\n//# sourceURL=webpack:///./src/containers/App.css?./node_modules/css-loader??ref--5-1");
 
 /***/ }),
 
