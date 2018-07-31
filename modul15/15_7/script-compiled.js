@@ -21,20 +21,26 @@ class Stopwatch extends React.Component {
 
 		this.step = () => {
 			if (!this.state.running) return;
-			this.calculate();
-			this.forceUpdate();
-		};
+			let ms = this.state.times.miliseconds;
+			let sec = this.state.times.seconds;
+			let min = this.state.times.minutes;
 
-		this.calculate = () => {
-			this.state.times.miliseconds += 1;
-			if (this.state.times.miliseconds >= 100) {
-				this.state.times.seconds += 1;
-				this.state.times.miliseconds = 0;
+			ms += 1;
+			if (ms >= 100) {
+				sec += 1;
+				ms = 0;
 			}
-			if (this.state.times.seconds >= 60) {
-				this.state.times.minutes++;
-				this.state.times.seconds = 0;
+			if (sec >= 60) {
+				min++;
+				sec = 0;
 			}
+			this.setState({
+				times: {
+					minutes: min,
+					seconds: sec,
+					miliseconds: ms
+				}
+			});
 		};
 
 		this.stop = () => {
@@ -43,12 +49,9 @@ class Stopwatch extends React.Component {
 		};
 
 		this.saveResult = () => {
-			this.addResult(this.format(this.state.times));
-		};
-
-		this.addResult = result => {
-			this.state.resultsList.push(result);
-			this.forceUpdate();
+			this.setState({
+				resultsList: [...this.state.resultsList, this.getFormattedTime()]
+			});
 		};
 
 		this.resetResultsList = () => {
@@ -69,18 +72,11 @@ class Stopwatch extends React.Component {
 	}
 
 	render() {
-		let timesList = this.state.resultsList.map(function (theResult) {
-			return React.createElement(
-				"li",
-				{ key: "time_" + Math.random() },
-				theResult
-			);
-		});
-		/*		for (let i = 0; i < this.state.resultsList.length; i++) {
-  	timesList.push(
-  		<li key={"time_" + i}>{this.state.resultsList[i]}</li>
-  	);
-  }*/
+		const timesList = this.state.resultsList.map(theResult => React.createElement(
+			"li",
+			{ key: "time_" + Math.random() },
+			theResult
+		));
 		return React.createElement(
 			"div",
 			null,
@@ -123,7 +119,7 @@ class Stopwatch extends React.Component {
 				React.createElement(
 					"div",
 					null,
-					this.format(this.state.times)
+					this.getFormattedTime()
 				)
 			),
 			React.createElement(
@@ -139,8 +135,8 @@ class Stopwatch extends React.Component {
 		);
 	}
 
-	format(times) {
-		return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(Math.floor(times.miliseconds))}`;
+	getFormattedTime() {
+		return `${this.pad0(this.state.times.minutes)}:${this.pad0(this.state.times.seconds)}:${this.pad0(Math.floor(this.state.times.miliseconds))}`;
 	}
 
 	pad0(value) {

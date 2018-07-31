@@ -23,14 +23,9 @@ class Stopwatch extends React.Component {
 	};
 
 	render() {
-		let timesList = this.state.resultsList.map(function(theResult) {
-			return <li key={"time_" + Math.random()}>{theResult}</li>;
-		});
-		/*		for (let i = 0; i < this.state.resultsList.length; i++) {
-			timesList.push(
-				<li key={"time_" + i}>{this.state.resultsList[i]}</li>
-			);
-		}*/
+		const timesList = this.state.resultsList.map((theResult) => 
+			<li key={"time_" + Math.random()}>{theResult}</li>
+		);
 		return (
 			<div>
 				<nav className="controls">
@@ -55,7 +50,7 @@ class Stopwatch extends React.Component {
 					</a>
 				</nav>
 				<div className="stopwatch">
-					<div>{this.format(this.state.times)}</div>
+					<div>{this.getFormattedTime()}</div>
 				</div>
 				<div>
 					Results list:
@@ -65,10 +60,10 @@ class Stopwatch extends React.Component {
 		);
 	}
 
-	format(times) {
-		return `${this.pad0(times.minutes)}:${this.pad0(
-			times.seconds
-		)}:${this.pad0(Math.floor(times.miliseconds))}`;
+	getFormattedTime() {
+		return `${this.pad0(this.state.times.minutes)}:${this.pad0(
+			this.state.times.seconds
+		)}:${this.pad0(Math.floor(this.state.times.miliseconds))}`;
 	}
 
 	start = () => {
@@ -80,20 +75,26 @@ class Stopwatch extends React.Component {
 
 	step = () => {
 		if (!this.state.running) return;
-		this.calculate();
-		this.forceUpdate();
-	};
+		let ms = this.state.times.miliseconds;
+		let sec = this.state.times.seconds;
+		let min = this.state.times.minutes;
 
-	calculate = () => {
-		this.state.times.miliseconds += 1;
-		if (this.state.times.miliseconds >= 100) {
-			this.state.times.seconds += 1;
-			this.state.times.miliseconds = 0;
+		ms += 1;
+		if (ms >= 100) {
+			sec += 1;
+			ms = 0;
 		}
-		if (this.state.times.seconds >= 60) {
-			this.state.times.minutes++;
-			this.state.times.seconds = 0;
+		if (sec >= 60) {
+			min++;
+			sec = 0;
 		}
+		this.setState({
+			times: {
+				minutes: min,
+				seconds: sec,
+				miliseconds: ms
+			}
+		});
 	};
 
 	stop = () => {
@@ -102,12 +103,9 @@ class Stopwatch extends React.Component {
 	};
 
 	saveResult = () => {
-		this.addResult(this.format(this.state.times));
-	};
-
-	addResult = result => {
-		this.state.resultsList.push(result);
-		this.forceUpdate();
+		this.setState({
+			resultsList: [...this.state.resultsList, this.getFormattedTime()]
+		});
 	};
 
 	pad0(value) {
