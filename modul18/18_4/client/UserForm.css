@@ -1,0 +1,19 @@
+.UserForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Indie Flower', cursive;
+    background-color: turquoise;
+}
+
+.UserInput {
+    padding: 20px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 2em;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    width: 610px;
+    background-color: whitesmoke;
+}
