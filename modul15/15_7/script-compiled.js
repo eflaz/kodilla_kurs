@@ -14,13 +14,14 @@ class Stopwatch extends React.Component {
 
 		this.start = () => {
 			if (!this.state.running) {
-				this.state.running = true;
+				this.setState({
+					running: true
+				});
 				this.watch = setInterval(() => this.step(), 10);
 			}
 		};
 
 		this.step = () => {
-			if (!this.state.running) return;
 			let ms = this.state.times.miliseconds;
 			let sec = this.state.times.seconds;
 			let min = this.state.times.minutes;
@@ -44,7 +45,9 @@ class Stopwatch extends React.Component {
 		};
 
 		this.stop = () => {
-			this.state.running = false;
+			this.setState({
+				running: false
+			});
 			clearInterval(this.watch);
 		};
 
@@ -72,9 +75,9 @@ class Stopwatch extends React.Component {
 	}
 
 	render() {
-		const timesList = this.state.resultsList.map(theResult => React.createElement(
+		const timesList = this.state.resultsList.map((theResult, i) => React.createElement(
 			"li",
-			{ key: "time_" + Math.random() },
+			{ key: i },
 			theResult
 		));
 		return React.createElement(

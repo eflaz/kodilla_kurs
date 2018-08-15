@@ -23,8 +23,8 @@ class Stopwatch extends React.Component {
 	};
 
 	render() {
-		const timesList = this.state.resultsList.map((theResult) => 
-			<li key={"time_" + Math.random()}>{theResult}</li>
+		const timesList = this.state.resultsList.map((theResult, i) => 
+			<li key={i}>{theResult}</li>
 		);
 		return (
 			<div>
@@ -68,13 +68,14 @@ class Stopwatch extends React.Component {
 
 	start = () => {
 		if (!this.state.running) {
-			this.state.running = true;
+			this.setState({
+				running: true
+			});
 			this.watch = setInterval(() => this.step(), 10);
 		}
 	};
 
 	step = () => {
-		if (!this.state.running) return;
 		let ms = this.state.times.miliseconds;
 		let sec = this.state.times.seconds;
 		let min = this.state.times.minutes;
@@ -98,7 +99,9 @@ class Stopwatch extends React.Component {
 	};
 
 	stop = () => {
-		this.state.running = false;
+		this.setState({
+			running: false
+		});
 		clearInterval(this.watch);
 	};
 
