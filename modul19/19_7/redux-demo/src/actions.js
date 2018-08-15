@@ -1,12 +1,10 @@
 const uuid = require('uuid');
 
-const ADD_COMMENT = 'ADD_COMMENT';
-const EDIT_COMMENT = 'EDIT_COMMENT';
-const REMOVE_COMMENT = 'REMOVE_COMMENT';
-const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
-const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
-
-
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
+export const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
 
 export function addComment(text) {
     return {
@@ -16,13 +14,13 @@ export function addComment(text) {
     }
 }
 
-function editComment(id, text) {
-    return {
-        type: EDIT_COMMENT,
-        id,
-        text
-    }
-}
+// function editComment(id, text) {
+//     return {
+//         type: EDIT_COMMENT,
+//         id,
+//         text
+//     }
+// }
 
 export function removeComment(id) {
     return {
@@ -44,9 +42,3 @@ export function thumbDownComment(id) {
         id
     }
 }
-
-export { ADD_COMMENT };
-export { EDIT_COMMENT };
-export { REMOVE_COMMENT };
-export { THUMB_UP_COMMENT };
-export { THUMB_DOWN_COMMENT };
