@@ -1,45 +1,29 @@
 import React from 'react';
 import sudoku from 'sudoku-umd';
 import Tile from './Tile';
+import style from './Board.css';
 
 class Board extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        const grid = sudoku.board_string_to_grid(this.props.board);
         let result = [];
-        let rows = [];
-        let tileNumber = -1;
         let tileValue;
         let tileReadOnly;
-        for (let rowNumber = 0; rowNumber < grid.length; rowNumber++) {
-            const row = grid[rowNumber];
-
-            rows = [];
-            for (let column = 0; column < row.length; column++) {
-                tileNumber++;
-                tileValue = row[column];
-                if (tileValue == '.') {
-                    tileValue = '';
-                }
-                if (this.props.initialBoard.charAt(tileNumber) != '.') {
-                    tileReadOnly = true;
-                } else {
-                    tileReadOnly = false;
-                }
-                rows.push(<Tile key={tileNumber} number={tileNumber} value={tileValue} readOnly={tileReadOnly} onChange={this.props.handleTileChange}/>);
-
+        const board = this.props.board;
+        for (let tileNumber = 0; tileNumber < board.length; tileNumber++) {
+            tileValue = board.charAt(tileNumber);
+            if (tileValue == '.') {
+                tileValue = '';
             }
-            result.push(
-                <div key={rowNumber}>{rows}</div>
-            );
+            tileReadOnly = this.props.initialBoard.charAt(tileNumber) != '.';
+            result.push(<Tile key={tileNumber} number={tileNumber} value={tileValue} readOnly={tileReadOnly} onChange={this.props.handleTileChange} />);
         }
-        return(
-            result
+        return (
+            <div className={style['board']}>
+                {result}
+            </div>
         );
-        }
     }
+}
 
-    export default Board;
+export default Board;

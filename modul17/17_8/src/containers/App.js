@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 import sudoku from 'sudoku-umd';
 import style from './App.css';
 
-class App extends React.Component{
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +14,7 @@ class App extends React.Component{
     }
 
     render() {
-        return(
+        return (
             <div className={style.mainAppContainer}>
                 <div>
                     <Board
@@ -74,7 +74,7 @@ class App extends React.Component{
     }
 
     handleTileChange = (tileNumber, value) => {
-        if (value == '' || (value >= '0' && value <= '9')) {
+        if (value == '' || (value >= 0 && value <= 9)) {
             this.changeValueOnBoardPosition(tileNumber, value);
         }
     }
@@ -88,6 +88,6 @@ class App extends React.Component{
             board: newBoard
         });
     }
-    }
+}
 
-    export default App;
+export default App;
