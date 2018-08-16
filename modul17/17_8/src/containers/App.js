@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from './Board';
-import Navigation from './Navigation';
+import Navigation from '../presentationals/Navigation';
 import sudoku from 'sudoku-umd';
 import style from './App.css';
 
@@ -42,9 +42,9 @@ class App extends React.Component {
     handleCheck = () => {
         const solution = sudoku.solve(this.state.board);
         if (solution) {
-            alert('This sudoku is solvable');
+            alert('This sudoku is solvable - as far you are correct');
         } else {
-            alert('This sudoku IS NOT solvable');
+            alert('This sudoku IS NOT solvable, please correct some numbers');
         }
     }
 
@@ -74,7 +74,7 @@ class App extends React.Component {
     }
 
     handleTileChange = (tileNumber, value) => {
-        if (value == '' || (value >= 0 && value <= 9)) {
+        if (value == '' || (value >= 1 && value <= 9)) {
             this.changeValueOnBoardPosition(tileNumber, value);
         }
     }

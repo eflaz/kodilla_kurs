@@ -2,7 +2,7 @@
 
 body {
 	margin: 0;
-    font-family: 'Hanalei Fill', cursive;
+	font-family: 'Hanalei Fill', cursive;
 	background-color: #D3F3BE;
 }
 
@@ -12,6 +12,6 @@ body {
 	max-height: 100vh;
 	margin: 0 auto;
 	background-color: #D3F3BE;
-    color: #000000;
-    text-align: center;
+	color: #000000;
+	text-align: center;
 }

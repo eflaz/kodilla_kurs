@@ -1,6 +1,5 @@
 import React from 'react';
-import sudoku from 'sudoku-umd';
-import Tile from './Tile';
+import Tile from '../presentationals/Tile';
 import style from './Board.css';
 
 class Board extends React.Component {
