@@ -90,13 +90,13 @@ h2 {
 
 .single-country {
     width: 26%;
-    height: 300px;
+    height: 350px;
     margin-top: 50px;
     text-align: center;
 }
 
 .country-logo-wrapper {
-    height: 100%;
+    height: 70%;
     width: 100%;
 }
 
