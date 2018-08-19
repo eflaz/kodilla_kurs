@@ -1,5 +1,5 @@
 import React from 'react';
-import Board from './Board';
+import Board from '../presentationals/Board';
 import Navigation from '../presentationals/Navigation';
 import sudoku from 'sudoku-umd';
 import style from './App.css';
