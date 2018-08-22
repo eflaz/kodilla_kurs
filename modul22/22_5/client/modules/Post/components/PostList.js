@@ -13,14 +13,21 @@ function PostList(props) {
             post={post}
             key={post.cuid}
             onDelete={() => props.handleDeletePost(post.cuid)}
-            onThumbUp={() => props.handleThumbUp(post.cuid)}
-            onThumbDown={() => props.handleThumbDown(post.cuid)}
+            onThumbUp={(event) => {
+              event.preventDefault();
+              props.handleThumbUp(post.cuid)}
+            }
+            onThumbDown={(event) => {
+              event.preventDefault();
+              props.handleThumbDown(post.cuid)}
+            }
           />
         ))
       }
     </div>
   );
 }
+
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
